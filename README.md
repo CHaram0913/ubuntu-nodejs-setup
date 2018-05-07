@@ -36,3 +36,41 @@ sudo systemctl enable redis-server.service
 # Install git
 apt-get install git-core
 ```
+
+# Nginx Configurations
+
+```bash
+## Files
+
+# nginx configuration directory
+/etc/nginx
+
+# main nginx configuration file
+/etc/nginx/nginx.conf
+
+# sites available
+/etc/nginx/sites-available
+
+# sites enabled
+/etc/nginx/sites-enabled
+
+# snippets
+/etc/nginx/snippets
+
+# logs
+/var/log/nginx/access.log
+/var/log/nginx/error.log
+
+## default config (sites-available/default)
+
+...
+    location / {
+        proxy_pass http://localhost:port;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+...
+```
